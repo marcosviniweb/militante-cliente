@@ -61,7 +61,7 @@ export class LoginPage implements OnInit {
        //this.userRegister.criacao = dia;
        await this.afs.collection('Usuários').doc(   this.userRegister.id ).set(this.userRegister);
   
-       this.nav.navigateForward(['home/']);
+       this.nav.navigateForward(['msgrec/']);
   
   
       } catch (error) {
@@ -91,7 +91,7 @@ export class LoginPage implements OnInit {
        try {
          await this.authService.login(this.userLogin,this.userRegister);
          var userId = this.authService.getAuth().currentUser.uid;
-         this.nav.navigateForward(['home/']);
+         this.nav.navigateForward(['msgrec/']);
   
   
        } catch (error) {

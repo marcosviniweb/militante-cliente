@@ -19,7 +19,7 @@ export class LoginGuard implements CanActivate {
   canActivate(): Promise<boolean> {
     return new Promise(resolve => {
       this.authService.getAuth().onAuthStateChanged(user => {
-        if (user)      this.nav.navigateForward(['home/']);
+        if (user)      this.nav.navigateForward(['msgrec/']);
 
         resolve(!user ? true : false);
       });

@@ -20,6 +20,7 @@ export interface Idea {
   colaborador: '',
   coordenador:'',
   telefone: '',
+  cliente:'',
  
 }
 
@@ -44,6 +45,25 @@ export class IdeaService {
       })
     );
   }
+
+  colaborador(data: string){
+
+    this.ideaCollection = this.afs.collection<Idea>('Colaborador/')
+    this.ideas = this.ideaCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
+
+    var ordenacao =  this.afs.collection<Idea>( "Colaborador", ref => ref.where('id', '==', data)).valueChanges()
+    
+    
+        return ordenacao ;
+      }
 
   pegarempresas(){
 
@@ -92,9 +112,9 @@ var ordenacao =  this.afs.collection<Idea>( "Colaborador").valueChanges()
             return ordenacao ;
           }
 
-          mensagensgeral( ){
+          mensagensgeral(msg: string ){
             let data = "mensagem";
-        var ordenacao2 =  this.afs.collection<Idea>( "Mensagens", ref => ref.where('categoria', '==', data ).orderBy("criacao", "desc")).valueChanges()
+        var ordenacao2 =  this.afs.collection<Idea>( "Mensagens", ref => ref.where('cliente', '==', msg ).orderBy("criacao", "desc")).valueChanges()
         
         
             

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FileTransfer, FileTransferObject,FileUploadOptions } from '@ionic-native/file-transfer/ngx';
-import { MenuController, NavController } from '@ionic/angular';
+import { LoadingController, MenuController, NavController, ToastController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { IdeaService , Idea} from '../services/idea.service';
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-messagem',
   templateUrl: './messagem.page.html',
@@ -14,6 +15,7 @@ export class MessagemPage implements OnInit {
   base64img: string;
   message: string;
   titulo:string;
+  mensagens = [];
   data: string;
     link: string;
   toposelecionado: any = null;
@@ -35,9 +37,13 @@ export class MessagemPage implements OnInit {
   clienteselecionado: string;
   setorselect: string;
   listas = [];
+  user = [];
+  id:string;
+  msg:string;
   listasetor = [];
   listasupervidores = [];
   listacoordenador = [];
+  private loading: any;
   private ideas: Observable<Idea[]>;
   numero: string;
   constructor(   private transfer: FileTransfer,
@@ -47,9 +53,13 @@ export class MessagemPage implements OnInit {
     private ideaService: IdeaService,
     private service: IdeaService,
     private nav: NavController,
+    private authService: AuthService,
+    private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController,
     ) { }
 
   ngOnInit() {
+    this.id =  this.authService.getAuth().currentUser.uid
     this.ideaService.setor().subscribe(res => {
 
       this.listasetor= res;
@@ -110,11 +120,15 @@ export class MessagemPage implements OnInit {
        });
 
     }
-
+   
   async enviarServer(dados){
-
+    this.service.colaborador(this.id).subscribe(res => {
+      this.user = res;
+      for(let msg of res){
+          this.msg = msg.cliente;
+      }
      console.log(this.setorselecionado)
-
+        console.log( '-',this.msg)
      if(this.setorselecionado==undefined){
       this.setorselecionado = 'Geral';
       this.coordenadoresselecionado = 'Geral';
@@ -122,14 +136,20 @@ export class MessagemPage implements OnInit {
      console.log(this.setorselecionado)
      }
 
+     if(this.link==undefined){
+        this.link = '#';
+     }
+
       let id = this.afs.createId();
       let criacao = new Date();
       let categoria =  'mensagem';
       this.data = new Date().toString();
       this.numero = Math.floor(Math.random() * 1000000).toString();
+      
       this.afs.collection<Idea>('Mensagens').doc(id ).set({
           criacao: criacao,
           id: id,
+          cliente:this.msg,
           link: this.link,
           setor:this.setorselecionado,
           coordenacao: this.coordenadoresselecionado,
@@ -138,11 +158,10 @@ export class MessagemPage implements OnInit {
           data: this.data,
           mensagem: this.message,
           titulo: this.titulo,
-          img:'https://temtudo.tv.br/imagens/'+ this.numero+'.jpg',
+          img:'https://magocomunicacaoemarketing.com.br/imagens/'+ this.numero+'.jpg',
       }
   )  
- 
-   
+
  
 
     const fileTransfer: FileTransferObject = this.transfer.create();
@@ -155,7 +174,7 @@ export class MessagemPage implements OnInit {
       headers: {}
     }
 
-    fileTransfer.upload(this.base64img, 'https://temtudo.tv.br/uploads.php', options,).then(data => {
+    fileTransfer.upload(this.base64img, 'https://magocomunicacaoemarketing.com.br/uploads.php', options,).then(data => {
       alert('Mensagem enviada com sucesso!');
      
     }, error => {
@@ -163,6 +182,7 @@ export class MessagemPage implements OnInit {
       alert("error" + JSON.stringify(error));
      
     });
+    
 
     this.service.funcionario().subscribe(res => {
       let categoria =  'mensagem';
@@ -177,13 +197,13 @@ export class MessagemPage implements OnInit {
           id: nao.id,
           idmsg: id,
           idgeral: id+nao.id,
-          nome: nao.colaborador,
+          nome: nao.nome,
           telefone: nao.telefone,
           compartilhou: compartilhou,
           categoria: categoria,
           criacao: criacao,
           titulo: this.titulo,
-          coordenador: nao.coordenador,
+          cliente: nao.cliente,
           datawhats: '',
           whats: whats,
           facebook: face,
@@ -195,8 +215,33 @@ export class MessagemPage implements OnInit {
   
      }
     })
+
+  });
+
+  await this.presentLoading();
   
-     
-    this.nav.navigateForward(['home/']);
+  try {
+    setTimeout(() => {
+      this.loading.dismiss();
+      this.nav.navigateForward(['msgrec/']);
+     }, 3000);
+
+}catch (error) {
+
+}
+
+  
+  }
+
+ 
+
+  async presentLoading() {
+    this.loading = await this.loadingCtrl.create({ message: 'Aguarde...' });
+    return this.loading.present();
+  }
+ 
+  async presentToast(message: string) {
+    const toast = await this.toastCtrl.create({ message, duration: 3000 });
+    toast.present();
   }
 }

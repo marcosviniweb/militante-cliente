@@ -5,14 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyAbVtnRyUPCG0WUXUrl4j6LoUO7G0VNIdo",
-  authDomain: "aplicativo-mago.firebaseapp.com",
-  databaseURL: "https://aplicativo-mago.firebaseio.com",
-  projectId: "aplicativo-mago",
-  storageBucket: "aplicativo-mago.appspot.com",
-  messagingSenderId: "888144752672",
-  appId: "1:888144752672:web:dba487bd3d42d422b30c45",
-  measurementId: "G-C1BX92M9YS"
+    apiKey: "AIzaSyB3L4NkM1BeqVuNCtI4RZDkvEfFr79Deo8",
+    authDomain: "magoapp-6ed4d.firebaseapp.com",
+    projectId: "magoapp-6ed4d",
+    storageBucket: "magoapp-6ed4d.appspot.com",
+    messagingSenderId: "363906088701",
+    appId: "1:363906088701:web:be76d503ebf4a900f70894"
 }
 };
 
