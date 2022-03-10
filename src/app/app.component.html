@@ -1,0 +1,35 @@
+<ion-app>
+  <ion-menu side="start" menuId="first" contentId="content1">
+      <ion-content >
+        <div style = "height: 140px; ">
+
+        </div>
+        <div style = "margin-top: -80px" align = "center">
+      
+      </div>
+      <Br>
+          <img src = "../assets/img/logo.png" width="100%"/>
+        <ion-list style = "background-color: #ff6600">
+        <ion-menu-toggle color = "secondary"  auto-hide="true">
+          <ion-item style="color: white;" color = "primary" [routerLink]="['/home']" routerDirection="forward">
+      
+            Home
+          </ion-item>
+          <ion-item style="color: white" color = "primary" [routerLink]="['/messagem']" routerDirection="forward">
+           
+            Enviar Mensagem
+          </ion-item>
+
+          <ion-item style="color: white" color = "primary" [routerLink]="['/msgrec']" routerDirection="forward">
+           
+            Messagens enviadas
+          </ion-item>
+
+
+         
+        </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+<ion-router-outlet id="content1"></ion-router-outlet>
+</ion-app>

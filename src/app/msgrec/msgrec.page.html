@@ -1,0 +1,63 @@
+
+<ion-content class="wrapper"  padding>
+  <div class="wrapper">
+  <div class = "topo">
+    <ion-grid>
+      <ion-row>
+        <ion-col size = "2">
+          <ion-icon (click) = "abrirmenu()" style="margin-left:8px;margin-top:10px; color: white; font-size: 35px;" name="menu"></ion-icon>
+
+        </ion-col>
+        <ion-col>
+         <h5 style = "color: white; margin-top:20px">Mensagens   </h5> 
+        </ion-col>
+      </ion-row>
+
+
+    </ion-grid>
+  </div>
+  <div *ngFor="let registro of mensagens ">
+
+  
+  <div >
+  <ion-card style="padding: 5px; " >
+    <ion-grid  >
+      <ion-row>  
+        <ion-card-title>{{registro.titulo}}</ion-card-title><br>
+     
+        <br>
+          <div align = "center"> 
+          <p>{{registro.mensagem}}</p>
+          <img src = "{{registro.img}}" width="100%">
+        
+        </div>
+   
+    
+      </ion-row>
+      <ion-row>
+
+        <ion-col size = "9">
+    <p style = "font-size: 15px;">
+      Enviada às: {{registro.data | date: 'd/M/yy, h:mm a' }} ✓
+    </p>
+        
+        </ion-col>
+        
+        <ion-button (click) = "deletar(registro.id)" shape="round">    <ion-icon name="trash-outline" ></ion-icon></ion-button>
+      
+        <ion-col>
+
+          
+        </ion-col>
+      </ion-row>
+     
+     
+    
+    </ion-grid>    
+ 
+  </ion-card>
+  <br>
+</div>
+  </div>
+</div>
+  </ion-content>

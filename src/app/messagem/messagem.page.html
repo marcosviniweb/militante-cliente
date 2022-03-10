@@ -1,0 +1,84 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color = "primary">
+    <ion-grid>
+      <ion-row>
+        <ion-col size = "2">
+          <ion-icon (click) = "abrirmenu()" style="margin-left:8px;margin-top:0px; color: white; font-size: 35px;" name="menu"></ion-icon>
+
+        </ion-col>
+        <ion-col>
+       <h2 style = "margin-top:2px"> Enviar Mensagem</h2>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-grid>
+  
+
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-card style="padding:20px">
+  <ion-item>
+    <ion-label position="floating">Título</ion-label>
+    <ion-input  [(ngModel)]="titulo" name="titulo"></ion-input>
+  </ion-item><Br>
+  <ion-item>
+    <ion-label position="floating">Escreva a menssagem</ion-label>
+    <ion-textarea  [(ngModel)]="message" name="message"></ion-textarea>
+  </ion-item><br>
+  <ion-item>
+    <ion-label position="floating">link da mensagem</ion-label>
+    <ion-textarea  [(ngModel)]="link" name="link"></ion-textarea>
+  </ion-item><br>
+  Setor:
+  <div class="input-field col s3">
+  <ion-select  name="setor" [selectedText]="setorselecionado" [(ngModel)]="setorselecionado"  (ionChange)="puxarsupervisor($event)">
+    <ion-select-option placeholder = "select" name = "setor" *ngFor="let setor of listasetor"  [value]="setor.setor">
+  
+      {{setor.setor}}
+    </ion-select-option>
+</ion-select>
+</div><br>
+<div class="input-field col s3">
+  
+  Supervisores:
+  <ion-select  name="supervidores" [selectedText]="supervidoresselecionado" [(ngModel)]="supervidoresselecionado" (ionChange)="puxarcoordenador($event)" >
+    <ion-select-option placeholder = "select" name = "setsupervidoresor" *ngFor="let coordenador of listasupervidores"  [value]="coordenador.supervisor">
+  
+      {{coordenador.supervisor}}
+    </ion-select-option>
+
+  
+
+
+  </ion-select>
+</div> <br>
+<div class="input-field col s3">
+    
+
+
+    Coordenadores:
+    <ion-select  name="coordenador" [selectedText]="coordenadoresselecionado" [(ngModel)]="coordenadoresselecionado" >
+      <ion-select-option placeholder = "select" name = "coordenador" *ngFor="let coordenador of listacoordenador"  [value]="coordenador.coordenador">
+    
+        {{coordenador.coordenador}}
+      </ion-select-option>
+
+    
+ 
+
+    </ion-select>
+</div>
+
+  <Br><Br>
+  <div align = "center">
+
+  <ion-button  shape="round" (click) = "pegaImage()">Imagem</ion-button>
+  <ion-button  shape="round" (click) = "enviarServer(setorselecionado,supervidoresselecionado, coordenadoresselecionado)">Enviar</ion-button>
+  <img src = "{{base64img}}" width="100%">
+
+  </div>
+
+  </ion-card>
+</ion-content>

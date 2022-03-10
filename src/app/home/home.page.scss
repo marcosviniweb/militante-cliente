@@ -1,0 +1,254 @@
+#map{
+  height: 100%;
+  
+}
+
+p{
+  font-size: 15px;
+  text-align: justify;
+  font-weight: 600;
+}
+
+ion-content {
+  width: 100%;
+  height: 1800px;
+  position: absolute;
+  background: linear-gradient(45deg,  #3a85be,#ff6600, #24AADB );
+  background-size: 600% 100%;
+  animation: gradient 16s linear infinite;
+  animation-direction: alternate;
+ }
+ 
+.topo{
+
+ // background-color: #5cadff;
+  height: 70px;
+  border-bottom-left-radius:50px ;
+//  background-image: url(../../assets/img/topo.png);
+ box-shadow: 2px 2px 7px 3px rgba(0, 0, 0, 0.2);
+  margin-top:-20px;
+  z-index: 999999;
+  position: relative;
+}  
+
+.bottom{
+  position: relative;
+  background-color: #5cadff;
+  height: 100px;
+  border-top-left-radius:50px ;
+
+ z-index: -1;
+
+
+}  
+
+.divlogin{
+  position: relative;
+  padding: 20px;
+  z-index: 999999;
+  margin: 50px;
+  border-radius:10px ;
+  background-color: white;
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2);
+}
+
+.wrapper {
+  width: 100%;
+  
+  position: relative;
+  background: linear-gradient(45deg,  #3a85be,#ff6600, #24AADB );
+
+  animation: gradient 16s linear infinite;
+  animation-direction: alternate;
+}
+@keyframes gradient {
+  0% {background-position: 0%}
+  100% {background-position: 100%}
+}
+
+
+.centro{
+
+  margin-top:100%;
+   position: relative;
+
+}
+
+
+
+
+@media  screen and (min-height: 800px) {
+.centro{
+
+  margin-top:128%;
+   position: relative;
+
+}
+}
+//}
+//@extend @media  screen and (min-height: 800px) {
+//  .centro{
+//    margin-top: 100%;
+  
+ // }
+
+//    }
+
+ 
+
+    
+
+        
+// efeitos
+.animated {
+
+
+background-position: left top;
+animation-iteration-count: 1;
+-webkit-animation-duration: 1.5s;
+animation-duration: 1.5s;
+-webkit-animation-fill-mode: both;
+animation-fill-mode: both;
+animation-delay: 0.5s;
+}
+
+
+@-webkit-keyframes bounceInUp {
+from,
+60%,
+75%,
+90%,
+to {
+  -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+from {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 3000px, 0);
+  transform: translate3d(0, 3000px, 0);
+}
+
+60% {
+  opacity: 1;
+  -webkit-transform: translate3d(0, -20px, 0);
+  transform: translate3d(0, -20px, 0);
+}
+
+75% {
+  -webkit-transform: translate3d(0, 10px, 0);
+  transform: translate3d(0, 10px, 0);
+}
+
+90% {
+  -webkit-transform: translate3d(0, -5px, 0);
+  transform: translate3d(0, -5px, 0);
+}
+
+to {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+}
+
+@keyframes bounceInUp {
+from,
+60%,
+75%,
+90%,
+to {
+  -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+from {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 3000px, 0);
+  transform: translate3d(0, 3000px, 0);
+}
+
+60% {
+  opacity: 1;
+  -webkit-transform: translate3d(0, -20px, 0);
+  transform: translate3d(0, -20px, 0);
+}
+
+75% {
+  -webkit-transform: translate3d(0, 10px, 0);
+  transform: translate3d(0, 10px, 0);
+}
+
+90% {
+  -webkit-transform: translate3d(0, -5px, 0);
+  transform: translate3d(0, -5px, 0);
+}
+
+to {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+}
+
+.bounceInUp {
+-webkit-animation-name: bounceInUp;
+animation-name: bounceInUp;
+}
+
+@-webkit-keyframes bounceOut {
+20% {
+  -webkit-transform: scale3d(0.9, 0.9, 0.9);
+  transform: scale3d(0.9, 0.9, 0.9);
+}
+
+50%,
+55% {
+  opacity: 1;
+  -webkit-transform: scale3d(1.1, 1.1, 1.1);
+  transform: scale3d(1.1, 1.1, 1.1);
+}
+
+to {
+  opacity: 0;
+  -webkit-transform: scale3d(0.3, 0.3, 0.3);
+  transform: scale3d(0.3, 0.3, 0.3);
+}
+}
+
+.img{
+
+animation-iteration-count: 1;
+-webkit-animation-duration: 1s;
+animation-duration: 1s;
+-webkit-animation-fill-mode: both;
+animation-fill-mode: both;
+animation-delay: 1.5s;
+
+}
+
+
+@-webkit-keyframes fadeIn {
+from {
+  opacity: 0;
+}
+
+to {
+  opacity: 1;
+}
+}
+
+@keyframes fadeIn {
+from {
+  opacity: 0;
+}
+
+to {
+  opacity: 1;
+}
+}
+
+.fadeIn {
+-webkit-animation-name: fadeIn;
+animation-name: fadeIn;
+}
+
+
